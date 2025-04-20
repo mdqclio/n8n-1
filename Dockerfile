@@ -1,11 +1,19 @@
 FROM n8nio/n8n:latest
 
+# Instalar sudo para el usuario node
+USER root
+RUN apk add --no-cache sudo
+
+# Volver al usuario node
+USER node
+
+# Asegurarse de que n8n esté instalado globalmente con sudo
+RUN sudo npm install -g n8n
+
+# Configuraciones adicionales
 ENV N8N_PORT=10000
 ENV WEBHOOK_URL=https://n8n-1-1.onrender.com
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-
-# Asegurarse de que n8n está instalado globalmente
-RUN npm install -g n8n
 
 # Exponer el puerto que se usará
 EXPOSE 10000
