@@ -6,6 +6,8 @@ ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
 EXPOSE 10000
 RUN npm install -g n8n
+RUN n8n encryption-key
+
 
 CMD ["n8n"]
 
