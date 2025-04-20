@@ -3,6 +3,12 @@ FROM n8nio/n8n:latest
 # Cambiar al usuario root para permitir la instalación global
 USER root
 
+# Actualizar npm
+RUN npm install -g npm@latest
+
+# Instalar las dependencias necesarias para la instalación de n8n
+RUN apk add --no-cache bash
+
 # Instalar n8n globalmente
 RUN npm install -g n8n
 
