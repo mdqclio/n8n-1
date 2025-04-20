@@ -1,14 +1,13 @@
 FROM n8nio/n8n:latest
 
-# Instalar sudo para el usuario node
+# Cambiar al usuario root para permitir la instalación global
 USER root
-RUN apk add --no-cache sudo
+
+# Instalar n8n globalmente
+RUN npm install -g n8n
 
 # Volver al usuario node
 USER node
-
-# Asegurarse de que n8n esté instalado globalmente con sudo
-RUN sudo npm install -g n8n
 
 # Configuraciones adicionales
 ENV N8N_PORT=10000
@@ -23,3 +22,4 @@ RUN n8n encryption-key
 
 # Comando para iniciar n8n
 CMD ["n8n"]
+
