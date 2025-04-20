@@ -1,7 +1,8 @@
-FROM n8nio/base:20
+FROM n8nio/n8n
 
-RUN apk add --no-cache --update openssh sudo shadow bash
-RUN echo node ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/node && chmod 0440 /etc/sudoers.d/node
-RUN mkdir /workspaces && chown node:node /workspaces
-USER node
-RUN mkdir -p ~/.pnpm-store && pnpm config set store-dir ~/.pnpm-store --global
+ENV N8N_PORT=10000
+ENV WEBHOOK_URL=https://n8n-1-1.onrender.com
+
+EXPOSE 10000
+
+CMD ["n8n"]
